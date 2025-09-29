@@ -1,0 +1,51 @@
+.registration {
+  max-width: 640px;
+  margin: 160px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form input, form select {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  max-width: 600px;
+}
+
+form button {
+  padding: 10px 20px; 
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: auto;        
+  display: inline-block;
+  align-self: center; 
+  white-space: nowrap; 
+}
+
+form button:hover { 
+    background-color: #0056b3; 
+}
+
+
+@media (max-width: 768px) { 
+     .registration { 
+        width: 90%;
+    margin-top: 160px;
+    padding: 15px;
+    } 
+}
+@media (max-width: 475px) { 
+     .registration { 
+        width: 95%;
+    margin-top: 160px;
+    padding: 10px; 
+    } 
+}

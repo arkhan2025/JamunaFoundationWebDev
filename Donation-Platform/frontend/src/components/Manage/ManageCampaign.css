@@ -1,0 +1,147 @@
+.manage-campaigns-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px 30px;
+
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+  color: #fff;
+}
+
+.manage-campaigns-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #ff9800;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.form-message {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.form-message.success {
+  color: #4caf50;
+}
+
+.form-message.error {
+  color: #ff4444;
+}
+
+.empty-msg {
+  text-align: center;
+  font-size: 1rem;
+  color: #bbb;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.campaign-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campaign-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.campaign-card:hover {
+  transform: translateY(-3px);
+}
+
+.campaign-card h3 {
+  font-size: 1.4rem;
+  color: #ffb84d;
+  margin-bottom: 8px;
+}
+
+.campaign-card p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+.edit-fields {
+  margin-top: 12px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.edit-fields label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #ffcc80;
+}
+
+.edit-fields input {
+  margin-top: 5px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  outline: none;
+  transition: border 0.3s ease, background 0.3s ease;
+}
+
+.edit-fields input:focus {
+  border: 1.5px solid #ff9800;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-btn {
+  background-color: #ff4444;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+@media (max-width: 500px) {
+  .manage-campaigns-container {
+    margin: 40px 15px;
+    padding: 25px 20px;
+  }
+
+  .edit-fields {
+    flex-direction: column;
+  }
+
+  .campaign-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .campaign-card p {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,146 @@
+.page-container {
+  max-width: 100%;
+  padding: 10px 20px;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  color: #ff9800;
+  text-align: center;
+  margin-bottom: 20px;
+  -webkit-text-stroke: 1px #c17400;
+  -webkit-text-fill-color: #ff9800;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-container input.campaign-search {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 2px solid #000;
+  font-size: 1.1rem;
+  width: 400px;
+  max-width: 90vw;
+  outline: none;
+  color: #000;
+  background-color: #fcd5ab;
+  transition: 0.3s all ease;
+}
+
+.search-container input.campaign-search:focus {
+  border: 2px solid #ff9800;
+}
+
+.search-container button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff9800;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-container button:hover {
+  background-color: #cf7d03;
+}
+
+.campaign-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.campaign-card {
+  background: rgba(0, 0, 0, 0.65); 
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);  
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 480px;
+  max-width: 550px;
+  color: #fff;
+  position: relative;
+}
+
+.campaign-card h3 {
+  width: 100%;
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffca28;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  border-left: 4px solid #ff9800;
+}
+
+.campaign-card p {
+  width: 100%;
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 6px;
+  font-size: 20px;
+  line-height: 0.2;
+  color: #e0e0e0;
+}
+
+.input-button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+}
+
+.campaign-card input[type="number"] {
+  height: 40px;
+  width: 205px;
+  border-radius: 5px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  text-align: center;
+  color: #000;
+}
+
+.campaign-card button {
+  background-color: #ff9800;
+  border: none;
+  color: #fff;
+  padding: 0 16px;
+  height: 40px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.campaign-card button:hover {
+  background-color: #cf7d03;
+}
+
+.card-message {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 8px;
+  padding: 5px 10px;
+  color: rgb(255, 152, 0);
+  border-radius: 5px;
+  transition: opacity 0.5s ease;
+}

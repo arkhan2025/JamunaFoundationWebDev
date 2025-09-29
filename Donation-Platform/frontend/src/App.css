@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+ display: block;
+  flex-direction: column;
+
+  min-height: 100vh;
+
+  background: 
+    linear-gradient(rgba(254, 181, 92,0.5), rgba(234, 166, 82,0.2)), 
+    url("/l1.png");
+  
+  background-size: contain;          
+  background-position: center;   
+  background-repeat: no-repeat;     
+  background-attachment: fixed;     
+  
+  background-blend-mode: overlay;   
+  color: #ffffff;                 
+}

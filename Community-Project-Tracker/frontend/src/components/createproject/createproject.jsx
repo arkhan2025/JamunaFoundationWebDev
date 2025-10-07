@@ -39,7 +39,7 @@ const CreateProject = ({ projectId: propProjectId }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/users/approved");
+        const res = await axios.get("https://community-project-tracker.onrender.com/api/users/approved");
         const allUsers = res.data || [];
         setVolunteers(allUsers.filter((u) => u.role === "volunteer"));
         setDoctors(allUsers.filter((u) => u.role === "doctor"));
@@ -55,7 +55,7 @@ const CreateProject = ({ projectId: propProjectId }) => {
     const fetchProject = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/projects/${projectId}`
+          `https://community-project-tracker.onrender.com/api/projects/${projectId}`
         );
         const project = res.data;
 
@@ -144,7 +144,7 @@ const CreateProject = ({ projectId: propProjectId }) => {
           await Promise.all(
             removedUsers.map(async (userId) => {
               await axios.put(
-                `http://localhost:5000/api/users/${userId}/removeProject`,
+                `https://community-project-tracker.onrender.com/api/users/${userId}/removeProject`,
                 { projectId, setAvailable: true } // Pass flag to update availability
               );
             })
@@ -159,7 +159,7 @@ const CreateProject = ({ projectId: propProjectId }) => {
           await Promise.all(
             addedUsers.map(async (userId) => {
               await axios.put(
-                `http://localhost:5000/api/users/${userId}/addProject`,
+                `https://community-project-tracker.onrender.com/api/users/${userId}/addProject`,
                 { projectId }
               );
             })
@@ -167,11 +167,11 @@ const CreateProject = ({ projectId: propProjectId }) => {
         }
 
         // Update project itself
-        await axios.put(`http://localhost:5000/api/projects/${projectId}`, form);
+        await axios.put(`https://community-project-tracker.onrender.com/api/projects/${projectId}`, form);
         setPrevAssignedUsers(newAssigned);
         showPopup("Project updated successfully", "/projectlist");
       } else {
-        const res = await axios.post("http://localhost:5000/api/projects", form);
+        const res = await axios.post("https://community-project-tracker.onrender.com/api/projects", form);
         const newProjectId = res.data.project._id;
         if (!newProjectId) throw new Error("New project ID is missing");
 
@@ -179,7 +179,7 @@ const CreateProject = ({ projectId: propProjectId }) => {
           await Promise.all(
             allSelected.map(async (userId) => {
               await axios.put(
-                `http://localhost:5000/api/users/${userId}/addProject`,
+                `https://community-project-tracker.onrender.com/api/users/${userId}/addProject`,
                 { projectId: newProjectId }
               );
             })

@@ -33,7 +33,7 @@ export default function Profile() {
       <div className="profile-card">
         {me.photo && (
           <img
-            src={`http://localhost:5000/${me.photo}`}
+            src={`https://community-project-tracker.onrender.com/${me.photo}`}
             alt={`${me.firstName} ${me.lastName}`}
             onError={(e) => { e.target.src = "/default-user.png"; }}
           />

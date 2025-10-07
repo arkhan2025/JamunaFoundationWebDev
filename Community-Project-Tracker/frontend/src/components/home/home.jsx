@@ -27,9 +27,9 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [projectsRes, usersRes, requestsRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/projects"),
-          axios.get("http://localhost:5000/api/users/approved"),
-          axios.get("http://localhost:5000/api/requests"),
+          axios.get("https://community-project-tracker.onrender.com/api/projects"),
+          axios.get("https://community-project-tracker.onrender.com/api/users/approved"),
+          axios.get("https://community-project-tracker.onrender.com/api/requests"),
         ]);
 
         const allProjects = projectsRes.data;
@@ -83,7 +83,7 @@ export default function Home() {
   const markTaskComplete = async (projectId, taskName) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/projects/${projectId}/complete-task`,
+        `https://community-project-tracker.onrender.com/api/projects/${projectId}/complete-task`,
         { taskName, userId: user._id }
       );
 

@@ -37,7 +37,7 @@ export default function Register() {
       formData.append("role", role);
       if (photo) formData.append("photo", photo);
 
-      const res = await axios.post("http://localhost:5000/api/requests", formData, {
+      const res = await axios.post("https://community-project-tracker.onrender.com/api/requests", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

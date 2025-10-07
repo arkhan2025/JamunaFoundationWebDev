@@ -13,7 +13,7 @@ export default function Request() {
   useEffect(() => {
     const fetchRequest = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/requests/${id}`);
+        const res = await axios.get(`https://community-project-tracker.onrender.com/api/requests/${id}`);
         setRequest(res.data);
       } catch (err) {
         console.error(err);
@@ -28,7 +28,7 @@ export default function Request() {
   const handleDecision = async (action) => {
     setMessage("");
     try {
-      const res = await axios.post(`http://localhost:5000/api/requests/${id}/${action}`);
+      const res = await axios.post(`https://community-project-tracker.onrender.com/api/requests/${id}/${action}`);
       if (res.data.message === "approved") {
         setMessage("Request Approved");
       } else if (res.data.message === "rejected") {
@@ -55,7 +55,7 @@ export default function Request() {
       <div className="request-info">
         {request.photo && (
           <img
-            src={`http://localhost:5000/${request.photo}`}
+            src={`https://community-project-tracker.onrender.com/${request.photo}`}
             alt="User"
             onError={(e) => { e.target.src = "/default-user.png"; }}
           />

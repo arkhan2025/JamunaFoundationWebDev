@@ -1,0 +1,254 @@
+/* ===== Page Container ===== */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  h2{
+    text-align: center;
+    color: white;
+  }
+}
+
+.page-container.error {
+  color: #d93025;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* ===== Header ===== */
+.list-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.list-header .btn {
+  background-color: #4f46e5;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.list-header .btn:hover {
+  background-color: #4338ca;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* ===== Grid Layout for Running Projects ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+  p{
+    color: #f3f4f6;
+  }
+}
+
+/* ===== Project Card ===== */
+.project-card {
+  background: #fff;
+  padding: 22px 20px;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+  transform: translateY(-5px);
+}
+
+/* ===== Card Header ===== */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.project-card h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* ===== Description ===== */
+.project-card p.muted {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+/* ===== Progress Bar ===== */
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.progress-bar-bg {
+  flex: 1;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  color: #555;
+  min-width: 35px;
+  text-align: right;
+}
+
+/* ===== Completed Label ===== */
+.completed-label {
+  background-color: #22c55e;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Meta Info (Tasks + View Link) ===== */
+.project-card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.details-link {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.details-link:hover {
+  color: #3730a3;
+  text-decoration: underline;
+}
+
+/* ===== Buttons Inside Cards ===== */
+.btn-edit, .btn-view {
+  background-color: #facc15;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover, .btn-view:hover {
+  background-color: #eab308;
+  transform: translateY(-2px);
+}
+
+/* ===== Completed Projects Table ===== */
+.completed-projects-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.completed-projects-table th,
+.completed-projects-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.completed-projects-table th {
+  background-color: #4f46e5;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.completed-projects-table td {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+}
+
+.completed-projects-table tr:hover td {
+  background-color: #f3f4f6;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .list-header .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-edit, .btn-view {
+    width: 100%;
+    text-align: center;
+  }
+
+  .completed-projects-table th,
+  .completed-projects-table td {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+}

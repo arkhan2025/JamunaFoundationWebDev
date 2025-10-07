@@ -1,0 +1,8 @@
+.auth-page { display:flex; align-items:center; justify-content:center; min-height:70vh; padding:24px; }
+.auth-card { width:100%; max-width:420px; padding:20px; border-radius:8px; box-shadow:0 6px 18px rgba(20,20,30,0.06); background:#fff; }
+.auth-card h2 { margin:0 0 12px; }
+.auth-card label { display:block; margin-top:10px; font-size:0.9rem; color:#333; }
+.auth-card input { width:100%; padding:8px 10px; margin-top:6px; box-sizing:border-box; border:1px solid #e6e6e6; border-radius:6px; }
+.btn-primary { width:100%; padding:10px; margin-top:14px; background:#0b79f7; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+.error { background:#ffe6e6; color:#a10000; padding:8px 10px; border-radius:6px; margin-bottom:8px; }
+.muted { color:#666; font-size:0.9rem; margin-top:10px; }

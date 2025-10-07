@@ -1,0 +1,256 @@
+/* =========================
+   Container & Typography
+========================= */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+}
+
+.page-container h3 {
+  text-align: center;
+  color: #ffffff;
+}
+
+/* =========================
+   Project Header
+========================= */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.project-header h1 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.btn-edit {
+  background-color: #4f46e5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.btn-edit:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+}
+
+/* Disabled button */
+.btn-edit.disabled,
+.btn-edit:disabled {
+  background-color: #6d737e;
+  cursor: not-allowed;
+  color: #f3f4f6;
+}
+
+.btn-edit.disabled:hover::after,
+.btn-edit:disabled:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* =========================
+   Info Section
+========================= */
+.info {
+  color: #ffffff;
+  background: #1f2937;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.info strong {
+  color: #ffffff;
+}
+
+.muted {
+  color: #d1d5db;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   Progress Bar
+========================= */
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.progress-bar-bg {
+  flex: 1;
+  background-color: #374151;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 18px;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+.progress-row .muted {
+  white-space: nowrap;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+/* =========================
+   Tasks List
+========================= */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.task-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  transition: all 0.3s ease;
+}
+
+.task-card.done {
+  border-left: 5px solid #22c55e;
+}
+
+.task-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Task Left */
+.task-left {
+  flex: 1;
+  min-width: 250px;
+}
+
+.task-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.assigned-section {
+  margin-top: 10px;
+}
+
+.assigned-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #374151;
+}
+
+.assigned-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.role-tag {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.volunteer-tag {
+  color: #2563eb; /* blue */
+}
+
+.doctor-tag {
+  color: #16a34a; /* green */
+}
+
+.assigned-name {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.assigned-phone {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-left: 0;
+}
+
+/* Task Right */
+.task-right {
+  flex-shrink: 0;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-weight: 600;
+  color: #374151;
+}
+
+@media (max-width: 1024px) {
+  .task-card {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .task-right {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-edit {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-left {
+    min-width: 100%;
+  }
+
+  .task-right {
+    min-width: 100%;
+    justify-content: flex-start;
+  }
+
+  .progress-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

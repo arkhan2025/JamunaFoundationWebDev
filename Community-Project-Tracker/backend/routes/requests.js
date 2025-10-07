@@ -1,6 +1,6 @@
 import express from "express";
 import Request from "../models/request.js";
-import User from "../models/User.js";
+import User from "../models/user.js";
 import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
 import multer from "multer";

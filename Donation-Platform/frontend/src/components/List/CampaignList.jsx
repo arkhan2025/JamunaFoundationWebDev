@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../services/api"; // Use centralized axios instance
 import { useCart } from "../../context/CartContext.jsx";
 import "../../App.css";
 import "./CampaignList.css";
@@ -16,7 +16,7 @@ const CampaignList = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/campaigns`);
+        const res = await api.get("/api/campaigns"); // use axios instance
         setCampaigns(res.data);
       } catch (err) {
         console.error("Error fetching campaigns:", err);

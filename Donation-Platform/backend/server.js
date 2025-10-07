@@ -6,14 +6,17 @@ import cors from "cors";
 import authRoutes from "./routes/Auth.js";
 import campaignRoutes from "./routes/Campaigns.js";
 import donationRoutes from "./routes/donations.js";
-import cartRoutes from "./routes/Cart.js"; 
+import cartRoutes from "./routes/Cart.js";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 

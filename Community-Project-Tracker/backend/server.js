@@ -21,7 +21,7 @@ app.use(cookieParser());
 // CORS: allow only the Netlify frontend
 app.use(
   cors({
-    origin: process.env.CLIENT_URL, // should be https://community-project-tracker.netlify.app
+    origin: process.env.CLIENT_URL || "https://community-project-tracker.netlify.app",
     credentials: true,
   })
 );

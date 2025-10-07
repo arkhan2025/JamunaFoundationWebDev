@@ -1,6 +1,6 @@
 import express from "express";
 import Project from "../models/project.js";
-import User from "../models/User.js"; // needed to update assignedProjects & availability
+import User from "../models/user.js"; // needed to update assignedProjects & availability
 import { body, validationResult } from "express-validator";
 
 const router = express.Router();

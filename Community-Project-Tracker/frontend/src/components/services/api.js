@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://community-project-tracker-backend.onrender.com/api",
+  baseURL: import.meta.env.VITE_API_URL || "https://community-project-tracker.onrender.com/api",
   withCredentials: true 
 });
 

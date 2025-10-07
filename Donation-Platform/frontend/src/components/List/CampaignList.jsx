@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "../../services/api"; // Use centralized axios instance
 import { useCart } from "../../context/CartContext.jsx";
+import api from "../../services/api.js"; 
 import "../../App.css";
 import "./CampaignList.css";
 

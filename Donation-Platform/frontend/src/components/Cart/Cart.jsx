@@ -1,42 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { useCart } from "../../context/CartContext.jsx";
 import { CheckoutForm, stripePromise } from "../Checkout.jsx";
 import { Elements } from "@stripe/react-stripe-js";
-import axios from "axios";
+import api from "../../services/api.js"; // use the same api instance
 import "./Cart.css";
 
 const Cart = () => {
-  const { cartItems, setCartItems, removeFromCart, emptyCart } = useCart();
+  const [cartItems, setCartItems] = useState([]);
   const [message, setMessage] = useState("");
   const [showCheckout, setShowCheckout] = useState(false);
 
   const token = sessionStorage.getItem("token");
   const totalAmount = cartItems.reduce((sum, item) => sum + Number(item.amount), 0);
 
+  // Fetch cart from backend
   useEffect(() => {
     const fetchCart = async () => {
       if (!token) return;
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/cart`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get("/cart"); // api instance automatically adds token
         setCartItems(res.data);
       } catch (err) {
         console.error("Error loading cart:", err);
+        setCartItems([]);
       }
     };
     fetchCart();
-  }, [token, setCartItems]);
+  }, [token]);
 
   const showMessage = (msg) => {
     setMessage(msg);
     setTimeout(() => setMessage(""), 5000);
   };
 
+  // Remove an item from cart
   const handleRemove = async (id, title) => {
     if (!id) return;
     try {
-      await removeFromCart(id);
+      await api.delete(`/cart/${id}`);
+      setCartItems((prev) => prev.filter((item) => item._id !== id));
       showMessage(`Removed "${title}" from cart`);
     } catch (err) {
       console.error("Error removing item:", err);
@@ -44,13 +45,15 @@ const Cart = () => {
     }
   };
 
+  // Empty entire cart
   const handleEmpty = async () => {
     if (cartItems.length === 0) {
       showMessage("Cart is already empty");
       return;
     }
     try {
-      await emptyCart();
+      await api.delete("/cart"); // backend should clear cart
+      setCartItems([]);
       showMessage("Cart emptied");
     } catch (err) {
       console.error("Error emptying cart:", err);
@@ -58,13 +61,11 @@ const Cart = () => {
     }
   };
 
-  const handleCheckoutSuccess = async (successfulDonations) => {
-    try {
-      showMessage("Donation successful! Thank you for your support ❤️");
-      setShowCheckout(false);
-    } catch (err) {
-      console.error("Error clearing donated items:", err);
-    }
+  // Called after successful checkout
+  const handleCheckoutSuccess = () => {
+    setCartItems([]);
+    setShowCheckout(false);
+    showMessage("Donation successful! Thank you for your support ❤️");
   };
 
   return (
@@ -106,11 +107,7 @@ const Cart = () => {
 
           {showCheckout && (
             <Elements stripe={stripePromise}>
-              <CheckoutForm
-                cartItems={cartItems}
-                onSuccess={handleCheckoutSuccess}
-                removeFromCart={removeFromCart}
-              />
+              <CheckoutForm cartItems={cartItems} onSuccess={handleCheckoutSuccess} />
             </Elements>
           )}
         </>

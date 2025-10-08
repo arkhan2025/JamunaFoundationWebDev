@@ -32,7 +32,7 @@ const Register = () => {
       }
 
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/register`,
+        `${import.meta.env.VITE_API_URL}/register`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

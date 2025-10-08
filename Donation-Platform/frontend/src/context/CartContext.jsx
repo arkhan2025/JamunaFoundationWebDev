@@ -13,7 +13,7 @@ export const CartProvider = ({ children }) => {
     const fetchCart = async () => {
       if (!token) return;
       try {
-        const res = await axios.get(`${API_URL}/api/cart`, {
+        const res = await axios.get(`${API_URL}/cart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const itemsWithId = res.data.map((item) => ({

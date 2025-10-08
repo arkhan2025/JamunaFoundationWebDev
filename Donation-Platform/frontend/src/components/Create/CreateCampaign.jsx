@@ -27,7 +27,7 @@ const CreateCampaign = ({ token, user }) => {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/campaigns`,
+        `${import.meta.env.VITE_API_URL}/campaigns`,
         { title, description, cause, location, goalAmount, endDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );

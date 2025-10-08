@@ -21,7 +21,7 @@ const ManageCampaigns = ({ token }) => {
       setLoading(true);
       try {
         const res = await axios.get(
-          import.meta.env.VITE_API_URL + "/api/campaigns/my-campaigns",
+          import.meta.env.VITE_API_URL + "/campaigns/my-campaigns",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setCampaigns(res.data || []);

@@ -67,7 +67,7 @@ const CheckoutForm = ({ cartItems, onSuccess, removeFromCart }) => {
 
       for (const item of selected) {
         const res = await axios.post(
-          `${import.meta.env.VITE_API_URL}/api/donations`,
+          `${import.meta.env.VITE_API_URL}/donations`,
           {
             campaignId: item.campaignId,
             amount: Number(item.amount),

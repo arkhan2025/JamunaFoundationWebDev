@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { AuthContext } from "../AuthContext";
-import "./Project.css";
+import "./project.css";
 
 export default function ProjectDetail() {
   const { id } = useParams();

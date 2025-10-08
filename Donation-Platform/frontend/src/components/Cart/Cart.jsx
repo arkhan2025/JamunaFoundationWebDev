@@ -17,7 +17,7 @@ const Cart = () => {
     const fetchCart = async () => {
       if (!token) return;
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/cart`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/cart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCartItems(res.data);

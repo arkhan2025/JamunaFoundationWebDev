@@ -3,15 +3,16 @@ import api from "../../services/api.js";
 import "../../App.css";
 import "./CampaignList.css";
 
-const CampaignList = ({ cartItems, setCartItems }) => {
+const CampaignList = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [donationAmounts, setDonationAmounts] = useState({});
   const [messages, setMessages] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
   const token = sessionStorage.getItem("token");
 
-  // Fetch campaigns from backend
+  // Fetch campaigns
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
@@ -60,8 +61,7 @@ const CampaignList = ({ cartItems, setCartItems }) => {
         }
       );
 
-      // Update cart state directly
-      setCartItems(res.data);
+      setCartItems(res.data || []); // update local cart items
 
       setDonationAmounts((prev) => ({ ...prev, [campaign._id]: "" }));
       setMessages((prev) => ({
@@ -85,7 +85,7 @@ const CampaignList = ({ cartItems, setCartItems }) => {
     }
   };
 
-  // Filter campaigns based on search query
+  // Filter campaigns
   const filteredCampaigns = campaigns.filter((c) => {
     const query = searchQuery.toLowerCase();
     return (

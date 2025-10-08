@@ -13,7 +13,7 @@ const QuizList = () => {
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/quizzes");
+        const response = await fetch("https://educational-quiz-platform-l7r4.onrender.com/api/quizzes");
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         setQuizzes(Array.isArray(data) ? data : []);
@@ -33,7 +33,7 @@ const QuizList = () => {
     const fetchUserAttempts = async () => {
       if (!user?._id) return;
       try {
-        const res = await fetch(`http://localhost:5000/api/users/id/${user._id}`);
+        const res = await fetch(`https://educational-quiz-platform-l7r4.onrender.com/api/users/id/${user._id}`);
         if (!res.ok) throw new Error("Failed to fetch user data");
         const userData = await res.json();
         setAttempts(userData.attempts || []);

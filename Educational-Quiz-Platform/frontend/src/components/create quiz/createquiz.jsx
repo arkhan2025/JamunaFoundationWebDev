@@ -25,7 +25,7 @@ const CreateQuiz = () => {
     }
     const fetchUserData = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/users/${savedUser.email}`);
+        const res = await fetch(`https://educational-quiz-platform-l7r4.onrender.com/api/users/${savedUser.email}`);
         if (!res.ok) throw new Error("Failed to fetch user data");
         const data = await res.json();
         setUser(data);
@@ -140,7 +140,7 @@ const CreateQuiz = () => {
       let res;
       if (editQuiz?._id) {
         // PUT request for updating quiz
-        res = await fetch(`http://localhost:5000/api/quizzes/${editQuiz._id}`, {
+        res = await fetch(`https://educational-quiz-platform-l7r4.onrender.com/api/quizzes/${editQuiz._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(quizData),
@@ -149,7 +149,7 @@ const CreateQuiz = () => {
         setToastMessage("Quiz updated successfully!");
       } else {
         // POST request for creating new quiz
-        res = await fetch("http://localhost:5000/api/quizzes", {
+        res = await fetch("https://educational-quiz-platform-l7r4.onrender.com/api/quizzes", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(quizData),

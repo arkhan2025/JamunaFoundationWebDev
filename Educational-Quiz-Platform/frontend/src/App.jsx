@@ -7,7 +7,7 @@ import Login from "./components/login/login.jsx";
 import Registration from "./components/registration/registration.jsx";
 import Profile from "./components/profile/profile.jsx";
 import Quiz from "./components/quiz/quiz.jsx";
-import QuizList from "./components/quiz list/QuizList.jsx";
+import QuizList from "./components/quiz list/quizlist.jsx";
 import Result from "./components/result/result.jsx";
 import CreateQuiz from "./components/create quiz/createquiz.jsx";
 

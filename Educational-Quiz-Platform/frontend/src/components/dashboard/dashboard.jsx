@@ -32,7 +32,7 @@ const Dashboard = () => {
       if (!user || user.role !== "publisher") return;
       try {
         const res = await fetch(
-          `http://localhost:5000/api/quizzes?publisherId=${user._id}`
+          `https://educational-quiz-platform-l7r4.onrender.com/api/quizzes?publisherId=${user._id}`
         );
         if (!res.ok) throw new Error("Failed to fetch quizzes");
         const data = await res.json();
@@ -47,7 +47,7 @@ const Dashboard = () => {
 
   const safeFetchQuiz = async (quizId) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/quizzes/${quizId}`);
+    const res = await fetch(`https://educational-quiz-platform-l7r4.onrender.com/api/quizzes/${quizId}`);
     if (!res.ok) return null; 
     return await res.json();
   } catch {
@@ -59,7 +59,7 @@ useEffect(() => {
   const fetchAttempts = async () => {
     if (!user) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/users/id/${user._id}`);
+      const res = await fetch(`https://educational-quiz-platform-l7r4.onrender.com/api/users/id/${user._id}`);
       if (!res.ok) throw new Error("Failed to fetch user data");
       const userData = await res.json();
       const attempts = userData.attempts || [];
@@ -80,7 +80,7 @@ useEffect(() => {
 
           try {
             const quizRes = await fetch(
-              `http://localhost:5000/api/quizzes/${a.quizId}`
+              `https://educational-quiz-platform-l7r4.onrender.com/api/quizzes/${a.quizId}`
             );
             if (quizRes.ok) {
               const quizData = await quizRes.json();
@@ -150,7 +150,7 @@ useEffect(() => {
     try {
       await Promise.all(
         deleteTargetIds.map((id) =>
-          fetch(`http://localhost:5000/api/quizzes/${id}`, { method: "DELETE" })
+          fetch(`https://educational-quiz-platform-l7r4.onrender.com/api/quizzes/${id}`, { method: "DELETE" })
         )
       );
       setQuizzes(quizzes.filter((q) => !deleteTargetIds.includes(q._id)));

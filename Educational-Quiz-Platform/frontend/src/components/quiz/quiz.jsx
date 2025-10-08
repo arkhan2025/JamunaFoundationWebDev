@@ -16,7 +16,7 @@ const Quiz = () => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/quizzes/${id}`);
+        const res = await axios.get(`https://educational-quiz-platform-l7r4.onrender.com/api/quizzes/${id}`);
         setQuiz(res.data);
       } catch (err) {
         console.error("Error fetching quiz:", err);
@@ -93,11 +93,11 @@ const Quiz = () => {
         marksAchieved: score,
       };
 
-      await axios.put(`http://localhost:5000/api/users/${userId}/add-attempt`, attemptPayload);
+      await axios.put(`https://educational-quiz-platform-l7r4.onrender.com/api/users/${userId}/add-attempt`, attemptPayload);
 
       const prevHigh = parseInt(quiz.highestScore?.split("/")[0]) || 0;
       const newHighScore = Math.max(prevHigh, score);
-      await axios.put(`http://localhost:5000/api/quizzes/${quiz._id}`, {
+      await axios.put(`https://educational-quiz-platform-l7r4.onrender.com/api/quizzes/${quiz._id}`, {
         attempts: (quiz.attempts || 0) + 1,
         highestScore: `${newHighScore}/${quiz.questions.length}`,
       });

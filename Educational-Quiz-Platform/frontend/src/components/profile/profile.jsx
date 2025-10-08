@@ -10,7 +10,7 @@ const Profile = () => {
     if (!storedUser || !storedUser.email) return;
 
     axios
-      .get(`http://localhost:5000/api/users/${storedUser.email}`)
+      .get(`https://educational-quiz-platform-l7r4.onrender.com/api/users/${storedUser.email}`)
       .then((res) => setUserData(res.data))
       .catch((err) => console.error("Failed to fetch profile:", err));
   }, []);
@@ -23,7 +23,7 @@ const Profile = () => {
       <div className="profile-card">
         {userData.photo && (
           <img
-            src={`http://localhost:5000/${userData.photo.replace("\\", "/")}`}
+            src={`https://educational-quiz-platform-l7r4.onrender.com/${userData.photo.replace("\\", "/")}`}
             alt={userData.name}
             className="profile-photo"
           />

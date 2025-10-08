@@ -16,11 +16,11 @@ const Result = () => {
       try {
         if (!quizId || !userId) return;
 
-        const quizRes = await axios.get(`http://localhost:5000/api/quizzes/${quizId}`);
+        const quizRes = await axios.get(`https://educational-quiz-platform-l7r4.onrender.com/api/quizzes/${quizId}`);
         const quiz = quizRes.data;
         setQuizData(quiz);
 
-        const userRes = await axios.get(`http://localhost:5000/api/users/id/${userId}`);
+        const userRes = await axios.get(`https://educational-quiz-platform-l7r4.onrender.com/api/users/id/${userId}`);
         const user = userRes.data;
 
         const submission = user.attempts?.find(

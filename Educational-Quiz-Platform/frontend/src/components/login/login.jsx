@@ -26,7 +26,7 @@ const Login = ({ setUser }) => {
     setRoleChoice([]);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/users/login", {
+      const res = await axios.post("https://educational-quiz-platform-l7r4.onrender.com/api/users/login", {
         email,
         password,
       });

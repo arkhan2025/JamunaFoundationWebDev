@@ -38,7 +38,7 @@ const Registration = () => {
         if (form[key] !== null) formData.append(key, form[key]);
       });
 
-      const res = await axios.post("http://localhost:5000/api/register", formData, {
+      const res = await axios.post("https://educational-quiz-platform-l7r4.onrender.com/api/register", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

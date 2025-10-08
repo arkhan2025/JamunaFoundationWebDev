@@ -16,10 +16,13 @@ const CampaignList = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
+        // Fixed: add /api to match backend routes
         const res = await api.get("/campaigns");
-        setCampaigns(res.data);
+        // Defensive: ensure res.data is an array
+        setCampaigns(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Error fetching campaigns:", err);
+        setCampaigns([]); // fallback to empty array
       }
     };
     fetchCampaigns();
@@ -76,9 +79,9 @@ const CampaignList = () => {
   const filteredCampaigns = campaigns.filter((c) => {
     const query = searchQuery.toLowerCase();
     return (
-      c.title.toLowerCase().includes(query) ||
-      (c.location && c.location.toLowerCase().includes(query)) ||
-      (c.cause && c.cause.toLowerCase().includes(query))
+      c.title?.toLowerCase().includes(query) ||
+      c.location?.toLowerCase().includes(query) ||
+      c.cause?.toLowerCase().includes(query)
     );
   });
 

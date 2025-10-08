@@ -7,17 +7,20 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const token = sessionStorage.getItem("token");
-  const API_URL = import.meta.env.VITE_API_URL; // Ensure this is https://your-backend.com/api
+  const API_URL = import.meta.env.VITE_API_URL; // must be https://your-backend.com/api
 
-  // Fetch cart items on mount
+  // Fetch cart items from backend whenever token changes
   useEffect(() => {
     const fetchCart = async () => {
-      if (!token) return;
+      if (!token) {
+        setCartItems([]); // clear cart if not logged in
+        return;
+      }
       try {
         const res = await axios.get(`${API_URL}/cart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setCartItems(res.data);
+        setCartItems(res.data); // always use backend response
       } catch (err) {
         console.error("Error fetching cart:", err);
         setCartItems([]);
@@ -42,23 +45,21 @@ export const CartProvider = ({ children }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Use backend response to update cart
+      // Backend returns full updated cart, replace context
       setCartItems(res.data);
     } catch (err) {
       console.error("Error adding to cart:", err);
-      throw err; // allow calling component to handle error message
+      throw err; // allow component to show message
     }
   };
 
-  // Remove a specific cart item
+  // Remove item from cart
   const removeFromCart = async (cartItemId) => {
-    if (!cartItemId || !token) return;
+    if (!token || !cartItemId) return;
     try {
       await axios.delete(`${API_URL}/cart/${cartItemId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      // Update local context
       setCartItems((prev) => prev.filter((item) => item._id !== cartItemId));
     } catch (err) {
       console.error("Error removing from cart:", err);
@@ -78,10 +79,8 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Clear cart after successful payment
-  const clearCartAfterPayment = () => {
-    setCartItems([]);
-  };
+  // Clear cart after payment
+  const clearCartAfterPayment = () => setCartItems([]);
 
   return (
     <CartContext.Provider

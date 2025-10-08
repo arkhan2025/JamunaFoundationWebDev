@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useCart } from "../../context/CartContext.jsx";
 import api from "../../services/api.js";
 import "../../App.css";
 import "./CampaignList.css";
@@ -8,7 +9,7 @@ const CampaignList = () => {
   const [donationAmounts, setDonationAmounts] = useState({});
   const [messages, setMessages] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
-  const [cartItems, setCartItems] = useState([]);
+  const { addToCart } = useCart(); // Use context
 
   const token = sessionStorage.getItem("token");
 
@@ -48,27 +49,18 @@ const CampaignList = () => {
     }
 
     try {
-      const res = await api.post(
-        "/cart",
-        {
-          campaignId: campaign._id,
-          title: campaign.title,
-          amount,
-          location: campaign.location || "Unknown",
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      setCartItems(res.data || []); // update local cart items
+      await addToCart({
+        campaignId: campaign._id,
+        title: campaign.title,
+        amount,
+        location: campaign.location || "Unknown",
+      });
 
       setDonationAmounts((prev) => ({ ...prev, [campaign._id]: "" }));
       setMessages((prev) => ({
         ...prev,
         [campaign._id]: `Added $${amount} to cart`,
       }));
-
       setTimeout(() => {
         setMessages((prev) => ({ ...prev, [campaign._id]: "" }));
       }, 3000);
@@ -78,7 +70,6 @@ const CampaignList = () => {
         ...prev,
         [campaign._id]: "Failed to add to cart",
       }));
-
       setTimeout(() => {
         setMessages((prev) => ({ ...prev, [campaign._id]: "" }));
       }, 3000);

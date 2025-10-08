@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext.jsx";
-import api from "../../services/api.js"; 
+import api from "../../services/api.js";
 import "../../App.css";
 import "./CampaignList.css";
 
@@ -16,7 +16,7 @@ const CampaignList = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const res = await api.get("/api/campaigns"); // use axios instance
+        const res = await api.get("/campaigns");
         setCampaigns(res.data);
       } catch (err) {
         console.error("Error fetching campaigns:", err);
@@ -27,20 +27,22 @@ const CampaignList = () => {
 
   const handleAddToCart = async (campaign) => {
     if (!token) {
-      return setMessages((prev) => ({
+      setMessages((prev) => ({
         ...prev,
         [campaign._id]: "Log in first to add in Cart for donation",
       }));
+      return;
     }
 
     const rawAmount = donationAmounts[campaign._id];
     const amount = Number(rawAmount);
 
     if (!rawAmount || isNaN(amount) || amount <= 0) {
-      return setMessages((prev) => ({
+      setMessages((prev) => ({
         ...prev,
         [campaign._id]: "Enter a valid donation amount",
       }));
+      return;
     }
 
     try {
@@ -51,25 +53,23 @@ const CampaignList = () => {
         location: campaign.location || "Unknown",
       });
 
-      setDonationAmounts({ ...donationAmounts, [campaign._id]: "" });
+      setDonationAmounts((prev) => ({ ...prev, [campaign._id]: "" }));
       setMessages((prev) => ({
         ...prev,
         [campaign._id]: `Added $${amount} to cart`,
       }));
-      setTimeout(
-        () => setMessages((prev) => ({ ...prev, [campaign._id]: "" })),
-        3000
-      );
+      setTimeout(() => {
+        setMessages((prev) => ({ ...prev, [campaign._id]: "" }));
+      }, 3000);
     } catch (err) {
       console.error("Error adding to cart:", err);
       setMessages((prev) => ({
         ...prev,
         [campaign._id]: "Failed to add to cart",
       }));
-      setTimeout(
-        () => setMessages((prev) => ({ ...prev, [campaign._id]: "" })),
-        3000
-      );
+      setTimeout(() => {
+        setMessages((prev) => ({ ...prev, [campaign._id]: "" }));
+      }, 3000);
     }
   };
 
@@ -85,7 +85,6 @@ const CampaignList = () => {
   return (
     <div className="page-container">
       <h2 className="section-title">Campaigns</h2>
-
       <div className="search-container">
         <input
           type="text"
@@ -95,10 +94,8 @@ const CampaignList = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-
       <div className="campaign-list">
         {filteredCampaigns.length === 0 && <p>No campaigns found</p>}
-
         {filteredCampaigns.map((c) => (
           <div key={c._id} className="campaign-card">
             <h3>{c.title}</h3>
@@ -117,7 +114,6 @@ const CampaignList = () => {
                 <b>Location:</b> {c.location}
               </p>
             )}
-
             <div className="input-button-container">
               <input
                 type="number"
@@ -125,15 +121,14 @@ const CampaignList = () => {
                 placeholder="Enter donation amount"
                 value={donationAmounts[c._id] || ""}
                 onChange={(e) =>
-                  setDonationAmounts({
-                    ...donationAmounts,
+                  setDonationAmounts((prev) => ({
+                    ...prev,
                     [c._id]: e.target.value,
-                  })
+                  }))
                 }
               />
               <button onClick={() => handleAddToCart(c)}>Add to Cart</button>
             </div>
-
             {messages[c._id] && (
               <div className="card-message">{messages[c._id]}</div>
             )}

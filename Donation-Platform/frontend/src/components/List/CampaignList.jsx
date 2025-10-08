@@ -9,25 +9,25 @@ const CampaignList = () => {
   const [donationAmounts, setDonationAmounts] = useState({});
   const [messages, setMessages] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
-  const { addToCart } = useCart();
+  const { cartItems, setCartItems } = useCart(); // We'll handle cart updates here
 
   const token = sessionStorage.getItem("token");
 
+  // Fetch campaigns from backend
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        // Fixed: add /api to match backend routes
-        const res = await api.get("/campaigns");
-        // Defensive: ensure res.data is an array
+        const res = await api.get("/campaigns"); // /campaigns on api instance
         setCampaigns(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Error fetching campaigns:", err);
-        setCampaigns([]); // fallback to empty array
+        setCampaigns([]);
       }
     };
     fetchCampaigns();
   }, []);
 
+  // Fixed addToCart using api instance
   const handleAddToCart = async (campaign) => {
     if (!token) {
       setMessages((prev) => ({
@@ -49,12 +49,15 @@ const CampaignList = () => {
     }
 
     try {
-      await addToCart({
+      const res = await api.post("/cart", {
         campaignId: campaign._id,
         title: campaign.title,
         amount,
         location: campaign.location || "Unknown",
       });
+
+      // Update cart in context
+      setCartItems(res.data);
 
       setDonationAmounts((prev) => ({ ...prev, [campaign._id]: "" }));
       setMessages((prev) => ({
@@ -76,6 +79,7 @@ const CampaignList = () => {
     }
   };
 
+  // Filter campaigns based on search query
   const filteredCampaigns = campaigns.filter((c) => {
     const query = searchQuery.toLowerCase();
     return (

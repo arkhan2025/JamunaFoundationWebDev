@@ -76,6 +76,7 @@
   max-width: 550px;
   color: #fff;
   position: relative;
+  line-height: 4px;
 }
 
 .campaign-card h3 {

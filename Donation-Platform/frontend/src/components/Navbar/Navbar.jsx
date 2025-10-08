@@ -6,13 +6,14 @@ import logo from "../../assets/Logo W.png";
 
 const Navbar = ({ token, setToken, user }) => {
   const navigate = useNavigate();
-  const { cartCount } = useCart();
+  const { cartCount } = useCart(); // live cart count from context
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const [menuHeight, setMenuHeight] = useState(0);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     setToken("");
     navigate("/login");
   };
@@ -49,11 +50,13 @@ const Navbar = ({ token, setToken, user }) => {
 
         <div ref={menuRef} className={`navbar-menu ${menuOpen ? "open" : ""}`}>
           <div className="navbar-links">
-            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
+            </Link>
             {token && (
               <>
                 <Link to="/cart" onClick={() => setMenuOpen(false)}>
-                  Cart ({cartCount})
+                  Cart ({cartCount || 0}) {/* live cart count */}
                 </Link>
                 <Link to="/create" onClick={() => setMenuOpen(false)}>
                   Create Campaign
@@ -83,6 +86,7 @@ const Navbar = ({ token, setToken, user }) => {
         </div>
       </nav>
 
+      {/* Dynamic spacer for smooth menu animation */}
       <div style={{ height: menuHeight, transition: "height 0.3s ease" }}></div>
     </>
   );

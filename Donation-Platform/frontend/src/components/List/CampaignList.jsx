@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useCart } from "../../context/CartContext.jsx";
 import api from "../../services/api.js";
 import "../../App.css";
 import "./CampaignList.css";
 
-const CampaignList = () => {
+const CampaignList = ({ cartItems, setCartItems }) => {
   const [campaigns, setCampaigns] = useState([]);
   const [donationAmounts, setDonationAmounts] = useState({});
   const [messages, setMessages] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
-  const { cartItems, setCartItems } = useCart(); // We'll handle cart updates here
 
   const token = sessionStorage.getItem("token");
 
@@ -17,7 +15,7 @@ const CampaignList = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const res = await api.get("/campaigns"); // /campaigns on api instance
+        const res = await api.get("/campaigns");
         setCampaigns(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Error fetching campaigns:", err);
@@ -27,7 +25,7 @@ const CampaignList = () => {
     fetchCampaigns();
   }, []);
 
-  // Fixed addToCart using api instance
+  // Add donation to cart
   const handleAddToCart = async (campaign) => {
     if (!token) {
       setMessages((prev) => ({
@@ -49,14 +47,20 @@ const CampaignList = () => {
     }
 
     try {
-      const res = await api.post("/cart", {
-        campaignId: campaign._id,
-        title: campaign.title,
-        amount,
-        location: campaign.location || "Unknown",
-      });
+      const res = await api.post(
+        "/cart",
+        {
+          campaignId: campaign._id,
+          title: campaign.title,
+          amount,
+          location: campaign.location || "Unknown",
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-      // Update cart in context
+      // Update cart state directly
       setCartItems(res.data);
 
       setDonationAmounts((prev) => ({ ...prev, [campaign._id]: "" }));
@@ -64,6 +68,7 @@ const CampaignList = () => {
         ...prev,
         [campaign._id]: `Added $${amount} to cart`,
       }));
+
       setTimeout(() => {
         setMessages((prev) => ({ ...prev, [campaign._id]: "" }));
       }, 3000);
@@ -73,6 +78,7 @@ const CampaignList = () => {
         ...prev,
         [campaign._id]: "Failed to add to cart",
       }));
+
       setTimeout(() => {
         setMessages((prev) => ({ ...prev, [campaign._id]: "" }));
       }, 3000);

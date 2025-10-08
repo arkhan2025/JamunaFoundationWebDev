@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthContext";
 import api from "../services/api";
-import "./Profile.css";
+import "./profile.css";
 
 export default function Profile() {
   const { user: authUser, token } = useContext(AuthContext);

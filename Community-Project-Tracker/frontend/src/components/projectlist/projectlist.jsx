@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import api from "../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
-import "./ProjectList.css";
+import "./projectlist.css";
 
 export default function ProjectList() {
   const { user } = useContext(AuthContext);

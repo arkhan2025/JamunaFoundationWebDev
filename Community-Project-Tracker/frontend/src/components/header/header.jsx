@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
-import "./Header.css";
+import "./header.css";
 import logo from "../../assets/AR.png";
 
 export default function Header() {
